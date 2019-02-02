@@ -1,0 +1,4 @@
+#Probably version >=3 won't work. The >=2.6 was added in accordance with
+#  wagtail-markdown.
+markdown>=2.6,<2.7
+
