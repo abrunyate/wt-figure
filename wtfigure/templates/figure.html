@@ -1,0 +1,7 @@
+{% load wagtailimages_tags %}
+{% load smart_image_tags %}
+
+<figure>
+  {% image smart_image original class="hero" %}
+  <figcaption>{{smart_image.caption}} {{smart_image.licensing|byline}}</figcaption>
+</figure>
