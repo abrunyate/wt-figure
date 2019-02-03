@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='wt-figure',
+setup(name='wtfigure',
       author='Adrian Brunyate',
       version='0.0.1',
       license='LGPL2',

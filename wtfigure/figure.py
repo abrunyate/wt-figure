@@ -53,4 +53,4 @@ class FigureExtension(Extension):
                               '<image_reference')
 
 def makeExtension(**kwargs):
-    return FigureExtension(*args, **kwargs)
+    return FigureExtension(**kwargs)
