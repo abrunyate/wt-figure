@@ -12,8 +12,7 @@ tag_cre=re.compile(r'\{%\s*figure\s+(\S*)\s+("[^"]*")\s*%}')
 @register.filter
 def link_figures(value, arg):
   def subs_fun(match):
-    smart_image = arg.images.get(handle=match.group(1)).image
-    print(smart_image)
+    smart_image = arg.images().get(handle=match.group(1)).image
     return render_to_string("figure.html", {"smart_image": smart_image})
 
   return mark_safe(tag_cre.sub(subs_fun, value))
