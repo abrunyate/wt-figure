@@ -5,6 +5,7 @@
 #  metaclass that along with defining a model also defines a model for the
 #  images associated to the it.
 
+from django.conf import settings
 from django.db import models
 from django.db.models.base import ModelBase   #Django's  magic metaclass
 
@@ -25,7 +26,9 @@ class ImageClassBase(models.Model):
     abstract = True
 
   image = models.ForeignKey(
-    'smart_images.SmartImage', on_delete=models.CASCADE, related_name='+'
+    settings.WAGTAILIMAGES_IMAGE_MODEL,
+    on_delete=models.CASCADE,
+    related_name='+'
   )
   handle = models.CharField(blank=True, max_length=250)
 
