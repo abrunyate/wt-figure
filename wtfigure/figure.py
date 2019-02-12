@@ -10,6 +10,8 @@ from markdown.inlinepatterns import Pattern, IMAGE_REFERENCE_RE
 class DanglingImageReferencePattern(Pattern):
     """ If a stored reference is not found assume this is a figure link and
         feed to the appropriate template. """
+    #We use code copied from the python-markddown core for image links, but jump
+    #  on dangling references before it gets a chance to complain.
 
     NEWLINE_CLEANUP_RE = re.compile(r'[ ]?\n', re.MULTILINE)
 
@@ -26,7 +28,6 @@ class DanglingImageReferencePattern(Pattern):
         # Clean up linebreaks in id
         id = self.NEWLINE_CLEANUP_RE.sub(' ', id)
         if id in self.markdown.references:  # Pass on defined references.
-            #return m.group(0)
             return None
 
         text = m.group(2)
@@ -34,16 +35,6 @@ class DanglingImageReferencePattern(Pattern):
 
     def makeTag(self, id, text):
         return '{{% figure {} "{}" %}}'.format(id, text)
-#        el = util.etree.Element("img")
-#        el.set("src", self.sanitize_url(href))
-#        if title:
-#            el.set("title", title)
-#
-#        if self.markdown.enable_attributes:
-#            text = handleAttributes(text, el)
-#
-#        el.set("alt", self.unescape(text))
-#        return el
 
 
 class FigureExtension(Extension):
